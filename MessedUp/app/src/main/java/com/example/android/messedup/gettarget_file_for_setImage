@@ -1,0 +1,96 @@
+//////////////////////////////////////////////////////////////
+1st Method
+//////////////////////////////////////////////////////////////
+ public void imageDownload(Context ctx, String url){
+        try {
+            Picasso.with(ctx)
+                    .load("https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png")
+                    .into(getTarget(url));
+            textView.setText("SUCCESS_AGAIN_");
+        }
+        catch (Exception e){
+            textView.setText("FAILED_HERE");
+        }
+
+    }
+
+//target to save
+    private Target getTarget(final String url){
+        Target target = new Target(){
+
+            @Override
+            public void onBitmapLoaded(final Bitmap bitmap, Picasso.LoadedFrom from) {
+                new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+
+                       File file = new File(Environment.getExternalStorageDirectory().getPath() + "/" + url);
+                        try {
+                            file.createNewFile();
+                            FileOutputStream ostream = new FileOutputStream(file);
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, ostream);
+                            ostream.flush();
+                            ostream.close();
+                            textView.setText("SUCCESS_AGAIN");
+                        } catch (IOException e) {
+                            Log.e("IOException", e.getLocalizedMessage());
+                            //textView.setText("FAILED_HERE");
+                        }
+                    }
+                }).start();
+
+            }
+
+            @Override
+            public void onBitmapFailed(Drawable errorDrawable) {
+
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+            }
+        };
+        return target;
+    }
+
+//////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////////
+2nd Method
+//////////////////////////////////////////////////////////////
+public void SaveFile(View v) {
+        BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
+        Bitmap bitmap =  Bitmap.createBitmap(drawable.getBitmap());
+        try {
+
+
+            FileOutputStream fos = null;
+            ContextWrapper cw = new ContextWrapper(this.getApplicationContext());
+            File directory = new File(Environment.getExternalStorageDirectory() + File.separator + "URLimages");
+            File mypath = new File(directory, "myImagesDGS.jpg");
+
+
+            textView.setText("SUCCESS_HERE");
+            try {
+                fos = new FileOutputStream(mypath);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }catch (Exception e){
+            textView.setText("FAILED_HERE");
+        }
+
+
+    }
+/////////////////////////////////////////////////////////////

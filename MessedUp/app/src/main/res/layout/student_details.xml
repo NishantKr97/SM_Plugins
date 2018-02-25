@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.android.messedup.MainActivity">
+
+
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="@dimen/image_length"
+        android:layout_height="@dimen/image_breadth"
+        android:layout_margin="@dimen/margin"
+        android:src="@mipmap/ic_launcher"
+        android:elevation="@dimen/img_elevation"
+        android:layout_gravity="center"
+        android:foregroundGravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="125"
+            android:textSize="@dimen/roll_textSize"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/margin"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="Suyash Ghuge"
+            android:textSize="@dimen/name_textSize" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/book"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/button_margin"
+            android:layout_marginRight="@dimen/button_margin"
+            android:layout_weight="1"
+            android:text="BOOK"
+            android:textSize="@dimen/button_textSize"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/button_margin"
+            android:layout_marginRight="@dimen/button_margin"
+            android:layout_weight="1"
+            android:text="Next"
+            android:textSize="@dimen/button_textSize"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
